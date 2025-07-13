@@ -52,4 +52,3 @@ bin/
 /tdlib-db/db.sqlite
 /tdlib-db/db.sqlite-shm
 /tdlib-db/db.sqlite-wal
-config.properties
