@@ -1,0 +1,55 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+/libs/zlib1.dll
+/src/main/python/tokenizer.pickle
+/libs/tdjni.dll
+/tdlib-db/td.binlog
+/data/saved_data.csv
+/src/main/python/saved_data.csv
+/libs/libssl-3-x64.dll
+/libs/libcrypto-3-x64.dll
+/src/main/python/lead_classifier_model.keras
+/tdlib-db/db.sqlite
+/tdlib-db/db.sqlite-shm
+/tdlib-db/db.sqlite-wal
+config.properties
