@@ -39,6 +39,9 @@ public class TelegramMessage {
     public void setChat(ChatInfo chat){
         this.chat = chat;
     }
+    public long getMessageId() {
+        return messageId;
+    }
 
     public void setSender(UserInfo sender){
         this.sender = sender;

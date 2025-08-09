@@ -37,3 +37,33 @@ tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJ
     archiveClassifier.set("")
     archiveVersion.set(version.toString())
 }
+
+val packageDist by tasks.registering(Copy::class) {
+    dependsOn(tasks.named("shadowJar"))
+
+    val outputDir = layout.buildDirectory.dir("package")
+    val jarFile = tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar").get().archiveFile
+
+    from(jarFile) {
+        rename { "estate-userbot.jar" } // итоговое имя jar
+    }
+
+    from("run.bat")
+
+    from("data") {
+        into("data")
+    }
+
+    from("src/main/python") {
+        include("classifier_api.py", "lead_messages.csv","model_create.py","test.py","test_request.py","wait_server.py") // ❗️ Укажи свои .py файлы
+        into("python")
+    }
+
+    from("config.properties.example") {
+        rename { "config.properties" } // <- переименование
+        into("") // кладем в корень финальной папки
+    }
+
+    into(outputDir)
+}
+
