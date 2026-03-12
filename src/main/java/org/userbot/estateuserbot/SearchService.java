@@ -1,13 +1,14 @@
 package org.userbot.estateuserbot;
 
 import org.drinkless.tdlib.TdApi;
+import org.userbot.estateuserbot.component.TelegramClient;
 
 public class SearchService {
 
-    private final TelegramClient client;
+    private  TelegramClient client;
 
     public SearchService(){
-        this.client = ClientStore.getClient();
+
     }
 
     public  TdApi.User searchUserbyId(long userId){

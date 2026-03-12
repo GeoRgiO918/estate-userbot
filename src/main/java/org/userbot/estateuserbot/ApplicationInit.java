@@ -4,13 +4,7 @@ public class ApplicationInit {
 
     public static void init()  {
         try {
-            LibrariesLoader.loadLibs();
-            System.out.println("All libs loaded!");
 
-            ConfigStore.initConfig();
-            System.out.println("Config loaded!");
-
-            TelegramClientInit.start();
             MessageThreadManager.initThread();
             FileThreadManager.initThread();
             System.out.println("All threads initialized!");

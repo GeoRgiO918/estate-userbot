@@ -1,24 +1,23 @@
-package org.userbot.estateuserbot.handlers;
+package org.userbot.estateuserbot.component;
 
 import org.drinkless.tdlib.Client;
 import org.drinkless.tdlib.TdApi;
-import org.userbot.estateuserbot.AuthService;
-import org.userbot.estateuserbot.Config;
-import org.userbot.estateuserbot.ConfigStore;
+import org.springframework.stereotype.Component;
+import org.userbot.estateuserbot.service.AuthService;
 import org.userbot.estateuserbot.MessageThreadManager;
+import org.userbot.estateuserbot.config.TelegramProperties;
 
 import java.time.LocalTime;
-import java.util.concurrent.CompletableFuture;
 
+@Component
 public class TelegramUpdateHandler implements Client.ResultHandler {
 
     private final AuthService authService;
-    private final Config config;
+    private final TelegramProperties properties;
 
-    public TelegramUpdateHandler(CompletableFuture<Boolean> auth) {
-    authService = new AuthService(auth);
-    config = ConfigStore.getConfig();
-
+    public TelegramUpdateHandler(AuthService authService, TelegramProperties properties) {
+        this.authService = authService;
+        this.properties =properties;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class TelegramUpdateHandler implements Client.ResultHandler {
             break;
         case TdApi.UpdateNewMessage.CONSTRUCTOR:
             TdApi.UpdateNewMessage update = (TdApi.UpdateNewMessage) object;
-            if (config.getListenerMode()) {
+            if (properties.isListenerMode()) {
                 MessageThreadManager.sendToThread(update);
             }else{
                 System.out.println("Skipped one message analyze" + LocalTime.now());

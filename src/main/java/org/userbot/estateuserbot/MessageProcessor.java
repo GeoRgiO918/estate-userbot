@@ -57,7 +57,7 @@ public class MessageProcessor {
         message.setSender(userInfo);
     }
     private void notifyAdmin(TelegramMessage message){
-        String adminUsername = ConfigStore.getConfig().getAdminUsername();
+        String adminUsername = " ";//ConfigStore.getConfig().getAdminUsername();
         TdApi.Chat adminChat = search.searchChatByUsername(adminUsername);
         notifyAdmin.notifyAdmin(message,adminChat);
     }

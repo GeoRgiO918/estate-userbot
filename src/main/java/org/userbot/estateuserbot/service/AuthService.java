@@ -1,30 +1,37 @@
-package org.userbot.estateuserbot;
+package org.userbot.estateuserbot.service;
 
 import org.drinkless.tdlib.TdApi;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.userbot.estateuserbot.component.TelegramClient;
+import org.userbot.estateuserbot.config.TelegramProperties;
 import org.userbot.estateuserbot.handlers.LoggingResultHandler;
 
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
+@Service
 public class AuthService {
 
-    private final CompletableFuture<Boolean> auth;
+    private final TelegramClient client;
+    private final TelegramProperties properties;
 
-    public AuthService(CompletableFuture<Boolean> auth )
-    {
-        this.auth = auth;
+    public AuthService(@Lazy TelegramClient client, TelegramProperties properties){
+        this.client = client;
+        this.properties = properties;
+
     }
 
     public void onAuthorizationStateUpdated(TdApi.AuthorizationState state) {
-        Config config = ConfigStore.getConfig();
-        TelegramClient client = ClientStore.getClient();
+
         switch (state.getConstructor()) {
             case TdApi.AuthorizationStateWaitTdlibParameters.CONSTRUCTOR:
                 System.out.println("Authorization state received: AuthorizationStateWaitTdlibParameters");
                 System.out.println("Sending tdLib parametrs");
                 TdApi.SetTdlibParameters params = new TdApi.SetTdlibParameters();
-                params.apiId = config.getApiId();
-                params.apiHash = config.getApiHash();
+                params.apiId = properties.getApiId();
+                params.apiHash = properties.getApiHash();
                 params.databaseDirectory = "tdlib-db";
                 params.deviceModel = "Java client";
                 params.systemLanguageCode = "en";
@@ -36,8 +43,8 @@ public class AuthService {
 
             case TdApi.AuthorizationStateWaitPhoneNumber.CONSTRUCTOR:
                 System.out.println("Authorization state received: AuthorizationStateWaitPhoneNumber");
-                System.out.println("Sending phone number " + config.getPhoneNumber());
-                client.sendAsync(new TdApi.SetAuthenticationPhoneNumber(config.getPhoneNumber(), null), new LoggingResultHandler("sending phone number"));
+                System.out.println("Sending phone number " + properties.getPhoneNumber());
+                client.sendAsync(new TdApi.SetAuthenticationPhoneNumber(properties.getPhoneNumber(), null), new LoggingResultHandler("sending phone number"));
                 break;
             case TdApi.AuthorizationStateWaitCode.CONSTRUCTOR:
                 System.out.println("Authorization state received: AuthorizationStateWaitCode");
@@ -51,7 +58,6 @@ public class AuthService {
                 break;
             case TdApi.AuthorizationStateReady.CONSTRUCTOR:
                 System.out.println("Authorization completed!");
-                auth.complete(true);
                 break;
 
             default:

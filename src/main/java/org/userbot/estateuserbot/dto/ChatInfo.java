@@ -1,7 +1,6 @@
 package org.userbot.estateuserbot.dto;
 
 import org.drinkless.tdlib.TdApi;
-import org.userbot.estateuserbot.ClientStore;
 
 public class ChatInfo {
     private long id;
@@ -32,9 +31,11 @@ public class ChatInfo {
 
     private TdApi.Supergroup getSupergroupDetails(long supergroupId) {
         try {
-            TdApi.Supergroup supergroup = (TdApi.Supergroup) ClientStore.getClient().sendSync(
-                    new TdApi.GetSupergroup(supergroupId)
-            );
+            TdApi.Supergroup supergroup = null;
+
+//                    (TdApi.Supergroup) ClientStore.getClient().sendSync(
+//                    new TdApi.GetSupergroup(supergroupId)
+//            );
             return supergroup;
         } catch (Exception e) {
             System.out.println("Error while trying to get Supergroup: " + e.getLocalizedMessage());

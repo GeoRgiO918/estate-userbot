@@ -1,16 +1,17 @@
 package org.userbot.estateuserbot;
 
 import org.drinkless.tdlib.TdApi;
+import org.userbot.estateuserbot.component.TelegramClient;
 import org.userbot.estateuserbot.dto.TelegramMessage;
 import org.userbot.estateuserbot.utils.StringUtils;
 import org.userbot.estateuserbot.utils.TDApiUtils;
 
 public class AdminNotificationService {
 
-    public final TelegramClient client;
+    public  TelegramClient client;
 
     public AdminNotificationService(){
-        client = ClientStore.getClient();
+
     }
 
 

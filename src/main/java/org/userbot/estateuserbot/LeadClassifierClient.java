@@ -14,7 +14,7 @@ public class LeadClassifierClient {
     private final String serverUrl;
 
     public LeadClassifierClient() {
-        this.serverUrl = ConfigStore.getConfig().getFlaskServerUrl();
+        this.serverUrl =  "test";//ConfigStore.getConfig().getFlaskServerUrl();
     }
 
     public double isLeadCheck(String text) throws IOException {
