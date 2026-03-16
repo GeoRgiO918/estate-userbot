@@ -1,4 +1,4 @@
-package org.userbot.estateuserbot;
+package org.userbot.estateuserbot.component.classification;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;

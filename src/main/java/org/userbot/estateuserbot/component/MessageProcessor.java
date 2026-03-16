@@ -1,12 +1,17 @@
-package org.userbot.estateuserbot;
+package org.userbot.estateuserbot.component;
 
 import org.drinkless.tdlib.TdApi;
+import org.springframework.stereotype.Component;
+import org.userbot.estateuserbot.*;
+import org.userbot.estateuserbot.component.classification.LeadScoringEngine;
 import org.userbot.estateuserbot.dto.ChatInfo;
 import org.userbot.estateuserbot.dto.TelegramMessage;
 import org.userbot.estateuserbot.dto.UserInfo;
+import org.userbot.estateuserbot.service.AdminNotificationService;
 
 import java.time.LocalTime;
 
+@Component
 public class MessageProcessor {
 
     private LeadScoringEngine scoringEngine;

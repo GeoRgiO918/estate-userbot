@@ -4,7 +4,6 @@ import org.drinkless.tdlib.Client;
 import org.drinkless.tdlib.TdApi;
 import org.springframework.stereotype.Component;
 import org.userbot.estateuserbot.service.AuthService;
-import org.userbot.estateuserbot.MessageThreadManager;
 import org.userbot.estateuserbot.config.TelegramProperties;
 
 import java.time.LocalTime;

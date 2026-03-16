@@ -2,7 +2,7 @@ package org.userbot.estateuserbot.handlers;
 
 import org.drinkless.tdlib.Client;
 import org.drinkless.tdlib.TdApi;
-import org.userbot.estateuserbot.UserBotContextStore;
+import org.userbot.estateuserbot.component.UserBotContextStore;
 
 public class BotUserInfoHandler implements Client.ResultHandler {
 

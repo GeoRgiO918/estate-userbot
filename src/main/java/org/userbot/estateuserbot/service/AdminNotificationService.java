@@ -1,25 +1,23 @@
-package org.userbot.estateuserbot;
+package org.userbot.estateuserbot.service;
 
 import org.drinkless.tdlib.TdApi;
+import org.springframework.stereotype.Component;
 import org.userbot.estateuserbot.component.TelegramClient;
 import org.userbot.estateuserbot.dto.TelegramMessage;
 import org.userbot.estateuserbot.utils.StringUtils;
 import org.userbot.estateuserbot.utils.TDApiUtils;
 
+@Component
 public class AdminNotificationService {
 
-    public  TelegramClient client;
+    public final TelegramClient client;
 
-    public AdminNotificationService(){
-
+    public AdminNotificationService(TelegramClient client) {
+        this.client = client;
     }
 
-
     public void notifyAdmin(TelegramMessage message, TdApi.Chat adminChat) {
-
             sendNotify(message, adminChat);
-
-
     }
 
 
