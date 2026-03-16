@@ -13,7 +13,6 @@ public class TelegramProperties {
     private String phoneNumber;
     private boolean listenerMode;
     private String adminUsername;
-    private String flaskServerUrl;
 
     public int getApiId() {
         return apiId;
@@ -55,11 +54,4 @@ public class TelegramProperties {
         this.adminUsername = adminUsername;
     }
 
-    public String getFlaskServerUrl() {
-        return flaskServerUrl;
-    }
-
-    public void setFlaskServerUrl(String flaskServerUrl) {
-        this.flaskServerUrl = flaskServerUrl;
-    }
 }

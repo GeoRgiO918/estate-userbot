@@ -15,5 +15,12 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  lead-classifier:
+    build:
+      context: ./src/main/python
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
 volumes:
   pgdata:

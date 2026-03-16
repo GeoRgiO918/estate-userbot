@@ -6,6 +6,7 @@ import org.drinkless.tdlib.TdApi;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.userbot.estateuserbot.component.TelegramClient;
+import org.userbot.estateuserbot.component.UserBotContextStore;
 import org.userbot.estateuserbot.config.TelegramProperties;
 import org.userbot.estateuserbot.entity.AuthenticationStatus;
 import org.userbot.estateuserbot.handlers.LoggingResultHandler;
@@ -19,6 +20,7 @@ public class AuthService {
 
     private final TelegramClient client;
     private final TelegramProperties properties;
+    private final UserBotContextStore userBotContextStore;
 
     private CompletableFuture<String> telegramCode;
     private CompletableFuture<String> password;
@@ -26,9 +28,10 @@ public class AuthService {
     @Getter
     private volatile AuthenticationStatus status = AuthenticationStatus.NOT_STARTED;
 
-    public AuthService(@Lazy TelegramClient client, TelegramProperties properties) {
+    public AuthService(@Lazy TelegramClient client, TelegramProperties properties, @Lazy UserBotContextStore userBotContextStore) {
         this.client = client;
         this.properties = properties;
+        this.userBotContextStore = userBotContextStore;
     }
 
     public void onAuthorizationStateUpdated(TdApi.AuthorizationState state) {
@@ -53,6 +56,11 @@ public class AuthService {
             }
 
             case TdApi.AuthorizationStateReady.CONSTRUCTOR -> {
+                try {
+                    userBotContextStore.loadContext();
+                }catch (Exception e){
+                    throw new RuntimeException(e.getMessage());
+                }
                 status = AuthenticationStatus.SUCCEED;
                 log.info("Authorization completed!");
             }

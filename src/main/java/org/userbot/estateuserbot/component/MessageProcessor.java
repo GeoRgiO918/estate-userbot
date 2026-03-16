@@ -24,7 +24,7 @@ public class MessageProcessor {
         notifyAdmin = new AdminNotificationService();
     }
 
-    public void process(TdApi.UpdateNewMessage update){
+     public void process(TdApi.UpdateNewMessage update){
         TelegramMessage message = extractMessage(update);
         if(message == null) return;
         scoringEngine.setScores(message);

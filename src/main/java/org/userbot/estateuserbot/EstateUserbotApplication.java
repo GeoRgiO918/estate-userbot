@@ -3,10 +3,11 @@ package org.userbot.estateuserbot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.userbot.estateuserbot.config.PredictionProperties;
 import org.userbot.estateuserbot.config.TelegramProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties(TelegramProperties.class)
+@EnableConfigurationProperties({TelegramProperties.class, PredictionProperties.class})
 public class EstateUserbotApplication {
 
 	public static void main(String[] args) {

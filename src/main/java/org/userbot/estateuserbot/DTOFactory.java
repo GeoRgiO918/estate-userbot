@@ -19,9 +19,9 @@ public class DTOFactory {
         text = StringUtils.trimString(text);
 
 
-        if(userId == UserBotContextStore.getContext().id){
-            return null;
-        }
+//        if(userId == UserBotContextStore.getContext().id){
+//            return null;
+//        }
 
         return new TelegramMessage(message.id, text,0,0,userId,message.chatId);
     }
